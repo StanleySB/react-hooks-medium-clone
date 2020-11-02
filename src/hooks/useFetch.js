@@ -1,14 +1,14 @@
-import axios from "axios";
-import { useState, useEffect, useCallback } from "react";
-import useLocalStorage from "./useLocalStorage";
+import axios from 'axios';
+import { useState, useEffect, useCallback } from 'react';
+import useLocalStorage from './useLocalStorage';
 
 export default (url) => {
-  const baseUrl = "https://conduit.productionready.io/api";
+  const baseUrl = 'https://conduit.productionready.io/api';
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [options, setOptions] = useState({});
-  const [token] = useLocalStorage("token");
+  const [token] = useLocalStorage('token');
 
   const doFetch = useCallback((options = {}) => {
     setOptions(options);
@@ -20,7 +20,7 @@ export default (url) => {
       ...options,
       ...{
         headers: {
-          authorization: token ? `Token ${token}` : "",
+          authorization: token ? `Token ${token}` : '',
         },
       },
     };

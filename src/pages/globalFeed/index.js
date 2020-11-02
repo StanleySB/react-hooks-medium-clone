@@ -1,15 +1,28 @@
-import React, { useEffect } from "react";
-import Feed from "../../components/feed";
+import React, { useEffect } from 'react';
+import { stringify } from 'query-string';
 
-import useFetch from "../../hooks/useFetch";
+import useFetch from '../../hooks/useFetch';
+import { limit, getPaginator } from '../../utils';
 
-const GlobalFeed = () => {
-  const apiUrl = "/articles?limit=10&offset=0";
+import Feed from '../../components/feed';
+import Pagination from '../../components/pagination';
+import PopularTags from '../../components/popularTags';
+import Loading from '../../components/loading';
+import ErrorMessage from '../../components/errorMessage';
+
+const GlobalFeed = ({ location, match }) => {
+  const { offset, currentPage } = getPaginator(location.search);
+  const stringifydParams = stringify({
+    limit,
+    offset,
+  });
+  const apiUrl = `/articles?${stringifydParams}`;
   const [{ response, isLoading, error }, doFetch] = useFetch(apiUrl);
+  const url = match.url;
 
   useEffect(() => {
     doFetch();
-  }, [doFetch]);
+  }, [doFetch, currentPage]);
 
   return (
     <div className="home-page">
@@ -22,11 +35,23 @@ const GlobalFeed = () => {
       <div className="container page">
         <div className="row">
           <div className="col-md-9">
-            {isLoading && <div>Is Loading...</div>}
-            {error && <div>Some error happened</div>}
-            {!isLoading && response && <Feed articles={response.articles} />}
+            {isLoading && <Loading />}
+            {error && <ErrorMessage />}
+            {!isLoading && response && (
+              <React.Fragment>
+                <Feed articles={response.articles} />
+                <Pagination
+                  total={response.articlesCount}
+                  limit={limit}
+                  url={url}
+                  currentPage={currentPage}
+                />
+              </React.Fragment>
+            )}
           </div>
-          <div className="col-md-3">Popular tags</div>
+          <div className="col-md-3">
+            <PopularTags />
+          </div>
         </div>
       </div>
     </div>
