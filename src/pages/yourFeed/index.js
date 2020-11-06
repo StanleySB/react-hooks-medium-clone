@@ -11,13 +11,13 @@ import Loading from '../../components/loading';
 import ErrorMessage from '../../components/errorMessage';
 import FeedToggler from '../../components/feedToggler';
 
-const GlobalFeed = ({ location, match }) => {
+const YourFeed = ({ location, match }) => {
   const { offset, currentPage } = getPaginator(location.search);
   const stringifydParams = stringify({
     limit,
     offset,
   });
-  const apiUrl = `/articles?${stringifydParams}`;
+  const apiUrl = `/articles/feed?${stringifydParams}`;
   const [{ response, isLoading, error }, doFetch] = useFetch(apiUrl);
   const url = match.url;
 
@@ -60,4 +60,4 @@ const GlobalFeed = ({ location, match }) => {
   );
 };
 
-export default GlobalFeed;
+export default YourFeed;
