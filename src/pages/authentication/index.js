@@ -5,9 +5,9 @@ import { Link, Redirect } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import useLocalStorage from '../../hooks/useLocalStorage';
 //Components
-import BackendErrorMessages from './components/backendErrorMessages';
 //Other
 import { CurrentUserContext } from '../../contexts/currentUser';
+import BackendErrorMessages from '../../components/backendErrorMessages';
 
 const Authentication = (props) => {
   const isLogin = props.match.path === '/login';
@@ -15,7 +15,7 @@ const Authentication = (props) => {
   const pageTitle = isLogin ? 'Sign in' : 'Sign up';
   const descriptionLink = isLogin ? '/register' : '/login';
   const descriptionText = isLogin ? 'Need an account?' : 'Have an account?';
-  const apiUrl = isLogin ? '/user/login' : '/users';
+  const apiUrl = isLogin ? '/users/login' : '/users';
   //Hooks
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
