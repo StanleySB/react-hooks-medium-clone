@@ -6,7 +6,7 @@ const ArticleForm = ({ initialValues, errors, onSubmit }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [description, setDescription] = useState('');
-  const [tagList, setTagList] = useState('');
+  const [tagList, setTagList] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const ArticleForm = ({ initialValues, errors, onSubmit }) => {
     setBody(initialValues.body);
     setDescription(initialValues.description);
     if (initialValues.tagList) {
-      setTagList(initialValues.tagList.join(' '));
+      setTagList(initialValues.tagList.join(','));
     }
   }, [initialValues]);
 
@@ -71,7 +71,7 @@ const ArticleForm = ({ initialValues, errors, onSubmit }) => {
                     className="form-control fomr-control-lg"
                     placeholder="Enter Tags"
                     value={tagList}
-                    onChange={(e) => setTagList(e.target.value)}
+                    onChange={(e) => setTagList(e.target.value.split(','))}
                   />
                 </fieldset>
                 <fieldset className="form-group">

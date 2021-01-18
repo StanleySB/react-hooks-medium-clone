@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 
-import { CurrentUserContext } from "../contexts/currentUser";
+import { CurrentUserContext } from '../contexts/currentUser';
 
 const TopBar = () => {
   const [currentUserState] = useContext(CurrentUserContext);
@@ -37,6 +37,11 @@ const TopBar = () => {
               <li className="nav-item">
                 <NavLink className="nav-link" to="/article/new">
                   <i className="ion-compose">&nbsp; New Post</i>
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/settings">
+                  <i className="ion-gear-a">&nbsp; Settings</i>
                 </NavLink>
               </li>
               <li className="nav-item">
