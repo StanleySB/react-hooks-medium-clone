@@ -1,3 +1,8 @@
+Проект находится в стадии разработки. 
+Представляет собой тренировочный проект для оттачивания навыков работы с React hooks. 
+Для запросов был взят открытый api https://conduit.productionready.io/api
+Стили так же подтягиваются с </link rel="stylesheet" href="//demo.productionready.io/main.css"/>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
