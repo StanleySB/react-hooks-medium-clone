@@ -10,6 +10,7 @@ import YourFeed from './pages/yourFeed';
 import CreateArticle from './pages/createArticle';
 import EditArticle from './pages/editArticle';
 import Settings from './pages/settings';
+import UserProfile from './pages/userProfile';
 
 export default () => {
   return (
@@ -21,6 +22,8 @@ export default () => {
       <Route path="/articles/:slug" exact component={Article} />
       <Route path="/articles/:slug/edit" component={EditArticle} />
       <Route path="/settings" component={Settings} />
+      <Route path="/profiles/:slug" component={UserProfile} />
+      <Route path="/profiles/:slug/favorites" component={UserProfile} />
       <Route path="/login" exact component={Authentication} />
       <Route path="/register" component={Authentication} />
     </Switch>

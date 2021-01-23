@@ -22,10 +22,9 @@ const CurrentUserChecker = ({ children }) => {
   }, [dispatch, token, doFetch]);
 
   useEffect(() => {
-    console.log(response, error);
     if (error !== null) {
       setToken('');
-      dispatch({ type: 'SET_UNAUTHORIZED' });
+      dispatch({ type: 'LOGOUT' });
     }
     if (!response) return;
     dispatch({ type: 'SET_AUTHORIZED', payload: response.user });
